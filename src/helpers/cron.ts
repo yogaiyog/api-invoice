@@ -1,6 +1,12 @@
 import prisma from "@/prisma";
 import cron from "node-cron";
 
+// Tipe untuk item di invoiceItems
+type InvoiceItem = {
+  productId: number;
+  quantity: number;
+  price: number;
+};
 
 // Jalankan cron setiap hari
 cron.schedule("* * * * *", async () => {
@@ -8,12 +14,12 @@ cron.schedule("* * * * *", async () => {
 
   const now = new Date();
 
-  now.setDate(now.getDate() + 9); // Tambahkan 7 hari
+  now.setDate(now.getDate() + 9); // Tambahkan 9 hari
   console.log(now);
 
   const invoices = await prisma.invoice.findMany({
     where: {
-      recurringActive : true,
+      recurringActive: true,
       recurringSchedule: { not: null },
       recurringEndDate: { gte: now },
     },
@@ -37,7 +43,7 @@ cron.schedule("* * * * *", async () => {
 
       // Tambahkan invoiceItems untuk invoice baru
       if (invoice.invoiceItems && invoice.invoiceItems.length > 0) {
-        const newInvoiceItems = invoice.invoiceItems.map((item) => ({
+        const newInvoiceItems = invoice.invoiceItems.map((item: InvoiceItem) => ({
           invoiceId: newInvoice.id, // Gunakan invoiceId baru
           productId: item.productId,
           quantity: item.quantity,
