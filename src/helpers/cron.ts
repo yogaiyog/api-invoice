@@ -1,9 +1,13 @@
 import prisma from "@/prisma";
 import cron from "node-cron";
 
-// Tipe untuk item di invoiceItems
+// Tipe untuk item di invoiceItems, sesuai dengan struktur dari Prisma
 type InvoiceItem = {
-  productId: number;
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  invoiceId: string;
+  productId: string; // Asumsi productId adalah string
   quantity: number;
   price: number;
 };
