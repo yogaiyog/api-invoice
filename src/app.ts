@@ -27,8 +27,8 @@ export default class App {
 
   private configure(): void {
     this.app.use(cors({
-      origin: ['http://localhost:3000', 'https://invoice-app-alpha-orcin.vercel.app'], // Pastikan domain frontend yang benar
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      origin: ['https://invoice-app-alpha-orcin.vercel.app', 'http://localhost:3000'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true,
     }));
@@ -38,9 +38,9 @@ export default class App {
     this.app.use(urlencoded({ extended: true }));
 
     // Menangani preflight request (OPTIONS)
-    this.app.options('*', (req, res) => {
+    this.app.options('*', (req: Request, res: Response) => {
       res.header('Access-Control-Allow-Origin', 'https://invoice-app-alpha-orcin.vercel.app');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       res.header('Access-Control-Allow-Credentials', 'true');
       res.sendStatus(200);
