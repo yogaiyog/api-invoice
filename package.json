@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev -r tsconfig-paths/register src/index.ts",
-    "build": "tsc && tsc-alias --outDir public", 
+    "build": "tsc && tsc-alias --outDir public",
     "serve": "cross-env NODE_ENV=production node public/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prisma": "npx prisma",
-    "vercel-build":"echo hello"
+    "vercel-build": "echo hello"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
@@ -18,6 +18,7 @@
     "ejs": "^3.1.10",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.16",
     "ts-node": "^10.9.2",
@@ -36,5 +37,9 @@
     "prisma": "^5.7.1",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0"
-  }
+  },
+  "_moduleAliases": {
+  "@": "./src"
+}
+  
 }
