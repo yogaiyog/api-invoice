@@ -1,5 +1,5 @@
 
-import { MailController } from '@/controllers/mail.controller';
+import { MailController } from '../controllers/mail.controller';
 import { Router } from 'express';
 
 

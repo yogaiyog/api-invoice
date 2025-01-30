@@ -1,4 +1,4 @@
-import { InvoiceController } from '@/controllers/invoice.controller';
+import { InvoiceController } from '../controllers/invoice.controller';
 import { Router } from 'express';
 
 

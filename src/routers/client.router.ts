@@ -1,5 +1,5 @@
-import { ClientController } from '@/controllers/client.controller';
-import { verifyToken } from '@/middlewares/token';
+import { ClientController } from '../controllers/client.controller'
+import { verifyToken } from '../middlewares/token';
 import { Router } from 'express';
 
 

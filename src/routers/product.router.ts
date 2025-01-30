@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { ProductController } from '@/controllers/product.controller';
-import { verifyToken } from '@/middlewares/token';
+import { ProductController } from '../controllers/product.controller';
+import { verifyToken } from '../middlewares/token';
 
 export class ProductRouter {
   private router: Router;
