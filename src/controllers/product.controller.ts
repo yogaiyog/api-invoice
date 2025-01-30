@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import prisma from '@/prisma';
+import prisma from "../prisma";
 
 export class ProductController {
   async getAllProducts(req: Request, res: Response) {
