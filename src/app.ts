@@ -28,7 +28,12 @@ export default class App {
   }
 
   private configure(): void {
-    this.app.use(cors());
+    this.app.use(cors({
+      origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], 
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true
+    }));
     this.app.use(json());
     this.app.use(urlencoded({ extended: true }));
   }
