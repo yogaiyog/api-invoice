@@ -1,4 +1,4 @@
-import prisma from "@/prisma";
+import prisma from "../prisma";
 import cron from "node-cron";
 
 // Tipe untuk item di invoiceItems, sesuai dengan struktur dari Prisma

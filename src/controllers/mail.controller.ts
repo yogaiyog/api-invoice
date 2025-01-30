@@ -1,8 +1,8 @@
-import prisma from "@/prisma";
+import prisma from "../prisma";
 import ejs from "ejs";
 import path from "path";
 import { Request, Response } from "express";
-import { transporter } from "@/helpers/nodemailer";
+import { transporter } from "../helpers/nodemailer";
 
 export class MailController {
   async SendInvoiceMail(req: Request, res: Response) {
