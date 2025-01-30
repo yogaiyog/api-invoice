@@ -5,11 +5,9 @@ import express, {
   Request,
   Response,
   NextFunction,
-  Router,
 } from 'express';
 import cors from 'cors';
 import { PORT } from './config';
-// import '../src/helpers/cron'; // seperti ini ?
 import { ProductRouter } from './routers/product.router';
 import { ClientRouter } from './routers/client.router';
 import { InvoiceRouter } from './routers/invoice.router';
@@ -29,15 +27,34 @@ export default class App {
 
   private configure(): void {
     this.app.use(cors({
-      origin:"*", 
+      origin: ['http://localhost:3000', 'https://invoice-app-alpha-orcin.vercel.app'], // Pastikan domain frontend yang benar
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization'],
-      credentials: true
+      credentials: true,
     }));
+
+    // Middleware lainnya
     this.app.use(json());
     this.app.use(urlencoded({ extended: true }));
-  }
 
+    // Menangani preflight request (OPTIONS)
+    this.app.options('*', (req, res) => {
+      res.header('Access-Control-Allow-Origin', 'https://invoice-app-alpha-orcin.vercel.app');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      res.sendStatus(200);
+    });
+
+    // Tambahkan header CORS pada setiap response
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
+      res.header('Access-Control-Allow-Origin', 'https://invoice-app-alpha-orcin.vercel.app');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      next();
+    });
+  }
 
   private handleError(): void {
     // not found
@@ -63,12 +80,12 @@ export default class App {
   }
 
   private routes(): void {
-    const productRouter = new ProductRouter()
-    const userRouter = new UserRouter()
-    const clientRouter = new ClientRouter()
-    const invoiceRouter = new InvoiceRouter()
-    const invoiceItemRouter = new InvoiceItemRouter()
-    const mailRouter = new MailRouter()
+    const productRouter = new ProductRouter();
+    const userRouter = new UserRouter();
+    const clientRouter = new ClientRouter();
+    const invoiceRouter = new InvoiceRouter();
+    const invoiceItemRouter = new InvoiceItemRouter();
+    const mailRouter = new MailRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
