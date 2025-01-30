@@ -31,7 +31,8 @@ export default class App {
       cors({
         origin: [
           'http://localhost:3000', 
-          'https://invoice-pdgh4x1v9-yoga-adi-saputras-projects.vercel.app'
+          'https://invoice-pdgh4x1v9-yoga-adi-saputras-projects.vercel.app',
+          'https://invoice-app-alpha-orcin.vercel.app'
         ], 
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
