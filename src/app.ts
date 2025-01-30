@@ -29,28 +29,13 @@ export default class App {
 
   private configure(): void {
     this.app.use(cors({
-      origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], 
+      origin:"*", 
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true
     }));
     this.app.use(json());
     this.app.use(urlencoded({ extended: true }));
-
-    this.app.options('*', (req, res) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-      res.status(200).end();
-    });
-
-    this.app.use((req: Request, res: Response, next: NextFunction) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-      res.header('Access-Control-Allow-Credentials', 'true');
-      next();
-    });
   }
 
 
