@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import prisma from '@/prisma';
+import prisma from '../prisma';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import ejs from "ejs";
 import path from "path";
-import { transporter } from "@/helpers/nodemailer";
+import { transporter } from "../helpers/nodemailer";
 
 const JWT_SECRET = process.env.JWT_SECRET || 'sangat rahasia'; // Simpan di .env file
 const SALT_ROUNDS = 10;
