@@ -9,7 +9,7 @@ import express, {
 } from 'express';
 import cors from 'cors';
 import { PORT } from './config';
-import '../src/helpers/cron'; // seperti ini ?
+// import '../src/helpers/cron'; // seperti ini ?
 import { ProductRouter } from './routers/product.router';
 import { ClientRouter } from './routers/client.router';
 import { InvoiceRouter } from './routers/invoice.router';
